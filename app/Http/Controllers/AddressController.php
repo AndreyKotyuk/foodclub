@@ -104,6 +104,10 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $address = Address::findOrFail($id);
+        $address->delete();
+
+        return redirect()->route('address.index')->with('flash_message','Address succesfully deleted!');
     }
 }

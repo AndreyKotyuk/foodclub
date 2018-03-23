@@ -1366,4 +1366,7 @@
 	.mb0 {margin-bottom: 0px !important;}
 	.mb40 {margin-bottom: 40px !important;}
 	
-	
+	#delbtn{
+		/*background-color: white; */
+		 border: none;
+	}
