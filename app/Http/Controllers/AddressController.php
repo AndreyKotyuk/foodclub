@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Address;
 
 class AddressController extends Controller
 {
@@ -13,8 +14,11 @@ class AddressController extends Controller
      */
     public function index()
     {
-      return view('address.create');
-    }
+      $addresses = Address::orderby('name')->get();
+
+
+      return view('address.create',compact('addresses'));
+  }
 
     /**
      * Show the form for creating a new resource.
@@ -23,9 +27,11 @@ class AddressController extends Controller
      */
     public function create()
     {
-        // $adresses = Address::orderby('name')->get();
-       
-    }
+       $addresses = Address::orderby('name')->get();
+
+       return view('address.create',compact('addresses'));
+
+   }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +41,25 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // die();
+        //Validating title and body field
+        $this->validate($request, [
+            'name'=>'required|max:100',
+            'city'=>'required|max:100',
+            'area'=>'required|max:100',
+            ]);
+
+        // die($request);
+//         var_dump( $request->all()); 
+// die();
+        Address::create($request->all());
+        // $post = Post::create($request->only('title', 'body'));
+
+    //Display a successful message upon save
+        return redirect()->route('address.index')
+            ->with('flash_message', 'New Address,
+             '. $request->name.' created');
+        // return redirect('address/index');
     }
 
     /**
