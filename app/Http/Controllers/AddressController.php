@@ -14,11 +14,15 @@ class AddressController extends Controller
      */
     public function index()
     {
-      $addresses = Address::orderby('name')->get();
 
 
-      return view('address.create',compact('addresses'));
-  }
+
+        $addresses = Address::orderby('name')->get();
+
+
+
+        return view('address.create',compact('addresses'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -27,11 +31,11 @@ class AddressController extends Controller
      */
     public function create()
     {
-       $addresses = Address::orderby('name')->get();
+     $addresses = Address::orderby('name')->get();
 
-       return view('address.create',compact('addresses'));
+     return view('address.create',compact('addresses'));
 
-   }
+ }
 
     /**
      * Store a newly created resource in storage.
@@ -57,8 +61,8 @@ class AddressController extends Controller
 
     //Display a successful message upon save
         return redirect()->route('address.index')
-            ->with('flash_message', 'New Address,
-             '. $request->name.' created');
+        ->with('flash_message', 'New Address,
+           '. $request->name.' created');
         // return redirect('address/index');
     }
 
@@ -104,7 +108,7 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
-        
+
         $address = Address::findOrFail($id);
         $address->delete();
 

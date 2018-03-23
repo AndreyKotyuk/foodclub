@@ -56,22 +56,30 @@
 
                         </div>
                         <div class="field">
-                            <label>Your city *</label>
-                            <select name='city' class="vl_empty" required="">
+                            <!-- <label>Your city *</label> -->
+                            {{ Form::label('city', 'Your city *') }}
+                            {{ Form::text('city', null, array('class' => 'form-control')) }}
+                          <!--   <select name='city' class="vl_empty" required="">
                                <option class="plh"></option>
+                               <option value="1">City 1</option>
+                               <option value="2">City 2</option>
                                @foreach($addresses as $address)
                                <option value="{{$address->city}}">{{$address->city}}</option>
                                @endforeach
-                           </select>
+                           </select> -->
                        </div>
                        <div class="field">
-                        <label>Your area *</label>
-                        <select name="area" required="">
+                        <!-- <label>Your area *</label> -->
+                        {{ Form::label('area', 'Your area *') }}
+                        {{ Form::text('area', null, array('class' => 'form-control')) }}
+                    <!--     <select name="area" required="">
                             <option class="plh"></option>
+                                <option value="1">City 1</option>
+                               <option value="2">City 2</option>
                             @foreach($addresses as $address)
                             <option value="{{$address->area}}">{{$address->area}}</option>
                             @endforeach
-                        </select>
+                        </select> -->
                     </div>
 
                     <div class="field">
@@ -116,7 +124,7 @@
                             <div class="actbox">
                                 {!! Form::open(['method' => 'DELETE', 'route' => ['address.destroy', $address->id] ]) !!}
                                 {!! Form::submit('', ['class' => 'bcross','id' => 'delbtn']) !!}
-                       
+
                                 {!! Form::close() !!}
 
                             </div>
@@ -124,6 +132,8 @@
 
 
                         </div>
+
+                   
                         @endforeach 
 
                     </div>
